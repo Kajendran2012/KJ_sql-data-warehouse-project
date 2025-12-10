@@ -1,32 +1,16 @@
 /*
 ===================================
-Created a silver layer tables
+Created a silver layer for tables
 ==================================
 
 Script's Purpose:
 	This script creates tables in the 'silver layer.'
 	It went through data manipulation, data cleaning process, and transformation.
-	from 'bronze layer' to 'silver layer'
+	from 'bronze layer' to 'silver layer.'
 ===========================================================================
 */
 
-CREATE or ALTER PROCEDURE silver.load_silver
-AS
-BEGIN
-DECLARE @start_time DATETIME, @end_time DATETIME,@start_batch_time DATETIME,
-		@end_batch_time DATETIME;
-	
-		set @start_batch_time = getdate()
-		BEGIN TRY
-			PRINT'======================================';
-			PRINT'LOADING SILVER LAYER';
-			PRINT'======================================';
 
-			PRINT('-------------------------------------');
-			PRINT('LOADING CRM SOURCE TABLES');
-			PRINT('-------------------------------------');
-
-		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: silver.crm_cust_info';
 		TRUNCATE TABLE silver.crm_cust_info;
 		PRINT '>> Inserting Data Into: silver.crm_cust_info';
@@ -65,11 +49,7 @@ DECLARE @start_time DATETIME, @end_time DATETIME,@start_batch_time DATETIME,
 		from bronze.crm_cust_info 
 		)t 
 		where flag_last =1 
-		SET @end_time = GETDATE();
-		PRINT '>> LOAD DURATION: ' + cast(DATEDIFF(SECOND, @start_time, @end_time) as nvarchar(50)) + 'seconds';
-			PRINT ' ----------------------------- ';
 
-		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: silver.crm_sales_details';
 		TRUNCATE TABLE silver.crm_sales_details;
 		PRINT '>> Inserting Data Into: silver.crm_sales_details';
@@ -108,15 +88,10 @@ DECLARE @start_time DATETIME, @end_time DATETIME,@start_batch_time DATETIME,
 			else sls_sales
 			end as sls_price 
 		from bronze.crm_sales_details
-		SET @end_time = GETDATE();
-		PRINT '>> LOAD DURATION: ' + cast(DATEDIFF(SECOND, @start_time, @end_time) as nvarchar(50)) + 'seconds';
-			PRINT ' ----------------------------- ';
 
-		PRINT('-------------------------------------');
-		PRINT('LOADING ERP SOURCE TABLES');
-		PRINT('-------------------------------------');	
 
-		SET @start_time = GETDATE();
+
+
 		PRINT '>> Truncating Table: silver.erp_loc_info';
 		TRUNCATE TABLE silver.erp_loc_info;
 		PRINT '>> Inserting Data Into: silver.erp_loc_info';
@@ -136,11 +111,8 @@ DECLARE @start_time DATETIME, @end_time DATETIME,@start_batch_time DATETIME,
 		else trim(loc_country)
 		end loc_country
 		FROM bronze.erp_loc_info
-		SET @end_time = GETDATE();
-		PRINT '>> LOAD DURATION: ' + cast(DATEDIFF(SECOND, @start_time, @end_time) as nvarchar(50)) + 'seconds';
-			PRINT ' ----------------------------- ';
+	
 
-		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: silver.erp_cust_info';
 		TRUNCATE TABLE silver.erp_cust_info;
 		PRINT '>> Inserting Data Into: silver.erp_cust_info';
@@ -164,11 +136,9 @@ DECLARE @start_time DATETIME, @end_time DATETIME,@start_batch_time DATETIME,
 			else trim(GEN)  
 			end GEN
 		from bronze.erp_cust_info
-		SET @end_time = GETDATE();
-		PRINT '>> LOAD DURATION: ' + cast(DATEDIFF(SECOND, @start_time, @end_time) as nvarchar(50)) + 'seconds';
-			PRINT ' ----------------------------- ';
+		
 
-		SET @start_time = GETDATE();
+
 		PRINT '>> Truncating Table: silver.erp_px_category';
 		TRUNCATE TABLE silver.erp_px_category;
 		PRINT '>> Inserting Data Into: silver.erp_px_category';
@@ -185,26 +155,3 @@ DECLARE @start_time DATETIME, @end_time DATETIME,@start_batch_time DATETIME,
 		trim(cat) as cat,
 		trim(subcat) as subcat,
 		trim(maintenance) as maintenance
-		from bronze.erp_px_category
-		SET @end_time = GETDATE();
-		PRINT '>> LOAD DURATION: ' + cast(DATEDIFF(SECOND, @start_time, @end_time) as nvarchar(50)) + 'seconds';
-			PRINT ' ----------------------------- ';
-
-	END TRY 
-	BEGIN CATCH 
-		PRINT'========================================================';
-		PRINT'ERROR OCCURED DURING LOADING BRONZE LAYER';
-		PRINT'ERROR MESSAGE:' + ERROR_MESSAGE();
-		PRINT'ERROR MESSAGE:' + CAST(ERROR_NUMBER() AS NVARCHAR(50));
-		PRINT'ERROR MESSAGE:' + CAST(ERROR_STATE() AS NVARCHAR(50));
-		PRINT'========================================================';
-	END CATCH
-
-	set @end_batch_time = getdate()
-	PRINT '----------------------------------------------------'
-	PRINT ' LOADING SILVER LAYER IS COMPLETED:'
-	PRINT ' TOTAL DURATION:' + cast(DATEDIFF(SECOND, @start_batch_time, @end_batch_time) as nvarchar(50)) + 'seconds';
-	PRINT '-----------------------------------------------------'
-
-
-END
