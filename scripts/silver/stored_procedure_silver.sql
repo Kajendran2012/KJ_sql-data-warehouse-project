@@ -1,14 +1,18 @@
 /*
-==============================================================================================================================================================================================
-This stored procedure, silver.load_silver, is an ETL script that moves and cleans data from the bronze (raw) layer to the silver (cleansed) layer.
-It performs two main tasks:
-silver.erp_cust_info Load (Customer Data):
-Cleansing: Standardizes CID (removes 'NAS' prefix), validates BDATE (sets future dates to NULL), and normalizes GEN (maps 'F'/'M' to 'Female'/'Male', sets blanks to 'n/a').
-silver.erp_px_category Load (Product Data):
-Refresh: Truncates the table for a full refresh.
-Cleansing: Trims whitespace from all columns.
-The script includes time tracking (logging durations) and robust error handling (TRY...CATCH).
-===================================================================================================================================================================================================
+=======================================================
+Stored procedure: Load Silver Layer( Brronze -> Silver )
+=======================================================
+Script's Purpose:
+  This stored procedure loads data into the ETL ( Extract, Transform, Load) Process to populate the 'silver'schema tables from the 'bronze' schema.
+Action performed:
+	- Truncate Silver Table.
+	- Insert transformed and cleansed data from 'Bronze' in 'Silver' Table
+PARAMETERS
+  None.
+This stored procedure does not accept any parameters or return any values.
+Usage Example:
+  EXEC silver.load_silver;
+=======================================================
 */
 
 
