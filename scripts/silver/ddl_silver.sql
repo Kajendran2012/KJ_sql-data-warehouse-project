@@ -1,3 +1,15 @@
+/*
+===================================
+Created a silver layer tables
+==================================
+
+Script's Purpose:
+	This script creates tables in the 'silver layer.'
+	It went through data manipulation, data cleaning process, and transformation.
+	from 'bronze layer' to 'silver layer'
+===========================================================================
+*/
+
 CREATE or ALTER PROCEDURE silver.load_silver
 AS
 BEGIN
