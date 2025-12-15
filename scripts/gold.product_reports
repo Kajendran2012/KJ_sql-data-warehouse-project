@@ -1,0 +1,101 @@
+/*
+--=======================================
+-------- Build Product Report --------
+--=======================================
+Purpose:
+- This reports consolidates key product metrics and behaviors
+
+Highlights:
+1. Gather essential field such as product names, category, subcategory and cost.
+2. Segment product by revenue to identify high_performers, Mid_range or low_perfomance.
+3. Aggregates product-level metrics:
+	-Total Orders
+	-Total Sales
+	-Total Quantity sold
+	-Total customer(unique)
+	-lifespan (in months)
+4. Calculate valuable KPIs:
+	- recency (month since last sale)
+	-average order value (AOR)
+	-average monthly spend (AMR)
+
+*/
+
+--select * from gold.fact_sales
+--select * from gold.dim_products
+
+CREATE or alter VIEW gold.product_reports as
+with base_query as 
+(
+select 
+s.order_num,
+s.order_date,
+s.customer_key,
+s.sales_amount,
+s.quantity,
+p.product_key,
+p.Product_name,
+p.Category,
+p.subcategory,
+p.product_cost
+from gold.fact_sales s
+left join gold.dim_products p
+on p.product_key =s.product_key
+where s.order_date is not null
+)
+, products_aggregiation as 
+(
+-- aggregate function--- 
+select
+product_key,
+Product_name,
+Category,
+subcategory,
+product_cost,
+datediff(month,min(order_date),max(order_date)) as lifespan,
+max(order_date) as last_order,
+count(distinct order_num) as total_order,
+count(distinct customer_key) as Unique_Customer,
+sum(sales_amount) as total_sales,
+sum(quantity) as total_quantity_sold,
+round(avg(cast(sales_amount as float) / NULLIF(quantity,0)),1) as Avg_selling_price
+from base_query
+group by 
+	product_key,
+	Product_name,
+	Category,
+	subcategory,
+	product_cost
+
+) 
+select 
+product_key,
+Product_name,
+Category,
+subcategory,
+last_order,
+DATEDIFF(month, last_order,getdate()) as Recency,
+--- Segment----
+case 
+	when total_sales > 50000 Then 'High-Performers'
+	when total_sales >= 10000 Then 'Mid_range'
+	else 'Low_perfomers'
+	end as product_segment,
+lifespan,
+total_order,
+Unique_Customer,
+total_sales,
+total_quantity_sold,
+Avg_selling_price,
+case 
+	when total_order = 0 then 0
+	else total_sales / total_order
+end as [Average order value],
+Case 
+	when lifespan = 0 then total_sales
+	else total_sales / lifespan
+end as [Average Month Revenue]
+from products_aggregiation
+
+
+select * from gold.product_reports
