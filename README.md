@@ -69,5 +69,12 @@ Develop SQL-based analytics to deliver detailed insights into:
 
 These insights empower stakeholders with key business metrics, enabling strategic decision-making.
 
+* **Customer Behavior**
+<img width="1268" height="713" alt="image" src="https://github.com/user-attachments/assets/f726fd24-23c1-43bd-a7e6-7d998eed2992" />
+
 * **Product Performance**
 <img width="1276" height="715" alt="image" src="https://github.com/user-attachments/assets/cf232303-24e5-4a7b-b51c-7fd60e6675fd" />
+
+* **Sales Trends**
+<img width="1263" height="714" alt="image" src="https://github.com/user-attachments/assets/9c514867-5a34-455c-a1fd-476b72785101" />
+
