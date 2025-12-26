@@ -58,27 +58,45 @@ Develop a modern data warehouse using SQL Server to consolidate sales data, enab
 
 ---
 
-### BI: Analytics & Reporting (Data Analysis)
+## 📊 BI: Analytics & Reporting (Data Analysis)
 
-#### Objective
-Develop SQL-based analytics to deliver detailed insights into:
+### 🎯 Objective
+Design and develop **SQL-driven analytical dashboards** that transform raw data into **clear, actionable business insights** across key performance areas:
 
-* **Customer Behavior**
-* **Product Performance**
-* **Sales Trends**
+- 🧍 **Customer Behavior**
+- 📦 **Product Performance**
+- 📈 **Sales Trends**
 
-These insights empower stakeholders with key business metrics, enabling strategic decision-making.
+These insights support **data-driven decision-making**, helping stakeholders identify patterns, monitor performance, and uncover growth opportunities.
 
-* **Customer Behavior**
-<img width="1268" height="713" alt="image" src="https://github.com/user-attachments/assets/f726fd24-23c1-43bd-a7e6-7d998eed2992" />
+---
 
+### 🧍 Customer Behavior Analysis
+**Focus Areas:**
+- Customer segmentation & engagement
+- Purchasing patterns
+- Retention and churn indicators
 
+<img width="1268" height="713" alt="Customer Behavior Dashboard" src="https://github.com/user-attachments/assets/f726fd24-23c1-43bd-a7e6-7d998eed2992" />
 
-* **Product Performance**
-<img width="1276" height="715" alt="image" src="https://github.com/user-attachments/assets/cf232303-24e5-4a7b-b51c-7fd60e6675fd" />
+---
 
+### 📦 Product Performance Analysis
+**Focus Areas:**
+- Top & underperforming products
+- Revenue contribution by product
+- Product-level KPIs
 
+<img width="1276" height="715" alt="Product Performance Dashboard" src="https://github.com/user-attachments/assets/cf232303-24e5-4a7b-b51c-7fd60e6675fd" />
 
-* **Sales Trends**
-<img width="1263" height="714" alt="image" src="https://github.com/user-attachments/assets/9c514867-5a34-455c-a1fd-476b72785101" />
+---
 
+### 📈 Sales Trends Analysis
+**Focus Areas:**
+- Time-based sales trends
+- Seasonal patterns
+- Growth and decline indicators
+
+<img width="1263" height="714" alt="Sales Trends Dashboard" src="https://github.com/user-attachments/assets/9c514867-5a34-455c-a1fd-476b72785101" />
+
+---
