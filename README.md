@@ -39,8 +39,8 @@ Everything is for Free!
 * [SQL Server Management Studio (SSMS)](your-link-here): GUI for managing and interacting with databases.
 * [Git Repository](your-link-here): Set up a GitHub account and repository to manage, version, and collaborate on your code efficiently.
 * [DrawIO](your-link-here): Design data architecture, models, flows, and diagrams.
-* [Notion](your-link-here): Get the Project Template from Notion
-* [Notion Project Steps](your-link-here): Access to All Project Phases and Tasks.
+* [Notion]([your-link-here](https://www.notion.so/SQL-Data-Warehouse-Project-23e99f17282c803da993e2222abef52b?source=copy_link): Get the Project Template from Notion
+* [Notion Project Steps](https://www.notion.so/SQL-Data-Warehouse-Project-23e99f17282c803da993e2222abef52b?source=copy_link): Access to All Project Phases and Tasks.
 
 ---
 ## 🚀 Project Requirements
