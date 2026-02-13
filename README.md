@@ -1,4 +1,4 @@
-# KJ_sql-data-warehouse-project
+# Data Engineering Project Using SQL
 ## Building a modern data warehouse with SQL server, including ETL process, data modeling and analytics.
 
 ### Data Warehouse and Analytics Project
